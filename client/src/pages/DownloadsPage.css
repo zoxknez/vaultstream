@@ -97,6 +97,99 @@
 }
 
 /* Responsive */
+/* Button Icon Styles - Fix visibility */
+.netflix-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.netflix-btn-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.netflix-btn-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+/* Primary button (Watch) - keep as is */
+.netflix-btn-primary {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+}
+
+.netflix-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.netflix-btn-primary svg {
+  fill: #000000;
+  stroke: none;
+}
+
+/* Download Actions - ensure icons are visible */
+.netflix-download-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.netflix-download-actions .netflix-btn-icon {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.netflix-download-actions .netflix-btn-icon:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Stats icons */
+.netflix-stat-mini svg,
+.detail-item svg {
+  color: rgba(255, 255, 255, 0.8);
+  flex-shrink: 0;
+}
+
+/* Search icon */
+.netflix-search-box svg {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* View toggle buttons */
+.netflix-view-toggle .netflix-btn-icon {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.netflix-view-toggle .netflix-btn-icon.active {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+
+.netflix-view-toggle .netflix-btn-icon svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
 @media (max-width: 768px) {
   .downloads-guard {
     margin-top: var(--space-lg);
