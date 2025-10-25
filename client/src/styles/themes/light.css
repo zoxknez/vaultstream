@@ -1,0 +1,121 @@
+/* ═══════════════════════════════════════════════════════════════════
+   ☀️ LIGHT THEME
+   StreamVault Light Mode Colors
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-theme='light'],
+.light-theme {
+  /* Background Colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f8f8;
+  --color-bg-elevated: #ffffff;
+  --color-bg-modal: rgba(0, 0, 0, 0.5);
+
+  /* Surface Colors */
+  --color-surface-1: rgba(0, 0, 0, 0.04);
+  --color-surface-2: rgba(0, 0, 0, 0.08);
+  --color-surface-3: rgba(0, 0, 0, 0.12);
+
+  /* Text Colors */
+  --color-text-primary: #000000;
+  --color-text-secondary: #565656;
+  --color-text-tertiary: #808080;
+
+  /* Shadows for light mode */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.18);
+  --shadow-card: 0 6px 20px rgba(0, 0, 0, 0.12);
+  --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.16);
+
+  /* Accent colors (keep Netflix red) */
+  --color-accent-primary: #e50914;
+  --color-accent-hover: #c11119;
+
+  /* Gradients adjusted for light mode */
+  --gradient-hero: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.95) 20%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.4) 80%,
+    transparent 100%
+  );
+
+  --gradient-hero-bottom: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.7) 40%,
+    rgba(255, 255, 255, 0.95) 70%,
+    rgba(255, 255, 255, 1) 90%,
+    rgba(255, 255, 255, 1) 100%
+  );
+
+  --gradient-card-hover: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+}
+
+/* Light theme specific overrides */
+.light-theme .netflix-header-scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.light-theme .netflix-card {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.light-theme .netflix-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.light-theme .netflix-btn-secondary {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--color-text-primary);
+}
+
+.light-theme .netflix-btn-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.light-theme .netflix-profile-dropdown {
+  background-color: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.light-theme .netflix-mobile-menu {
+  background-color: rgba(255, 255, 255, 0.98);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Scrollbar for light theme */
+.light-theme ::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+.light-theme ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.light-theme ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Selection styling for light theme */
+.light-theme ::selection {
+  background: var(--color-accent-primary);
+  color: white;
+}
+
+.light-theme ::-moz-selection {
+  background: var(--color-accent-primary);
+  color: white;
+}

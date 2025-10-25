@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  client-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -d .git ]; then
+            git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
+          else
+            git init .
+            git remote add origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
+          fi
+          git fetch --depth=1 origin ${{ github.sha }}
+          git checkout --force FETCH_HEAD
+
+      - name: Install Node.js 20.x
+        run: |
+          curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+          sudo apt-get install -y nodejs
+          node --version
+          npm --version
+
+      - name: Install dependencies
+        working-directory: client
+        run: npm install
+
+      - name: Run ESLint
+        working-directory: client
+        run: npm run lint
+
+      - name: Run Vitest
+        working-directory: client
+        run: npm run test -- --run
+
+  server-security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -d .git ]; then
+            git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
+          else
+            git init .
+            git remote add origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
+          fi
+          git fetch --depth=1 origin ${{ github.sha }}
+          git checkout --force FETCH_HEAD
+
+      - name: Install Node.js 20.x
+        run: |
+          curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+          sudo apt-get install -y nodejs
+          node --version
+          npm --version
+
+      - name: Install dependencies
+        working-directory: server
+        run: npm install
+
+      - name: Run test suite
+        working-directory: server
+        run: npm test
+
+      - name: Verify security advisories
+        working-directory: server
+        run: npm run audit:verify

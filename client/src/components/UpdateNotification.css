@@ -1,0 +1,377 @@
+/**
+ * 🔄 UPDATE NOTIFICATION STYLES
+ * Desktop auto-update UI
+ */
+
+.update-notification-container {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 10000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+}
+
+.update-notification {
+  background: var(--bg-elevated, linear-gradient(135deg, #1a1a2e 0%, #16213e 100%));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  border-radius: 12px;
+  padding: 24px;
+  min-width: 380px;
+  max-width: 480px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.update-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.update-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary, #fff);
+}
+
+.update-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.update-icon {
+  color: var(--primary-color, #e50914);
+  align-self: flex-start;
+}
+
+.update-icon.spinning {
+  animation: spin 1s linear infinite;
+}
+
+.update-icon.pulsing {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.update-icon.success {
+  color: #10b981;
+}
+
+.update-icon.error {
+  color: #ef4444;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.update-content h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary, #fff);
+}
+
+.update-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary, rgba(255, 255, 255, 0.8));
+  line-height: 1.5;
+}
+
+.update-version {
+  font-weight: 500;
+  color: var(--text-primary, #fff);
+}
+
+.update-changelog {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.update-changelog h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-color, #e50914);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.update-changelog ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.update-changelog li {
+  margin: 6px 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary, rgba(255, 255, 255, 0.8));
+  line-height: 1.5;
+  position: relative;
+  padding-left: 8px;
+}
+
+.update-changelog li::before {
+  content: '•';
+  position: absolute;
+  left: -12px;
+  color: var(--primary-color, #e50914);
+}
+
+.update-changelog p {
+  margin: 8px 0;
+  font-size: 0.875rem;
+}
+
+.update-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.update-progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.update-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color, #e50914) 0%, #ff1744 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.update-progress-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary, #fff);
+  min-width: 45px;
+  text-align: right;
+}
+
+.update-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-update-primary,
+.btn-update-secondary {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-update-primary {
+  background: linear-gradient(135deg, var(--primary-color, #e50914) 0%, #b00710 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
+}
+
+.btn-update-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.4);
+}
+
+.btn-update-primary:active {
+  transform: translateY(0);
+}
+
+.btn-update-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary, #fff);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-update-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.update-hint {
+  font-size: 0.8rem;
+  color: var(--text-tertiary, rgba(255, 255, 255, 0.5));
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.update-error {
+  color: #ef4444;
+  font-weight: 500;
+}
+
+/* Manual check button (bottom-right corner) */
+.update-check-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color, #e50914) 0%, #b00710 100%);
+  border: none;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.update-check-button:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(229, 9, 20, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.update-check-button:active {
+  transform: translateY(-2px) scale(1);
+}
+
+.update-check-button svg {
+  animation: none;
+}
+
+.update-check-button:hover svg {
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .update-notification-container {
+    top: 70px;
+    right: 12px;
+    left: 12px;
+  }
+
+  .update-notification {
+    min-width: auto;
+    max-width: none;
+    padding: 20px;
+  }
+
+  .update-actions {
+    flex-direction: column;
+  }
+
+  .btn-update-primary,
+  .btn-update-secondary {
+    width: 100%;
+  }
+
+  .update-check-button {
+    bottom: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  .update-notification {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+}
+
+/* Light theme adjustments */
+@media (prefers-color-scheme: light) {
+  .update-notification {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .update-close {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .update-close:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .update-content h3,
+  .update-version,
+  .btn-update-secondary,
+  .update-progress-text {
+    color: #1a1a1a;
+  }
+
+  .update-content p,
+  .update-changelog li {
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .update-hint {
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .btn-update-secondary {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-update-secondary:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .update-changelog {
+    background: rgba(0, 0, 0, 0.03);
+  }
+}

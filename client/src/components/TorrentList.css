@@ -1,0 +1,163 @@
+.torrent-list-wrapper {
+  background: rgba(17, 24, 39, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  backdrop-filter: var(--blur-lg) saturate(160%);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.torrent-list-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.torrent-row-meta-text {
+  margin: var(--space-xs) 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+.torrent-toolbar-actions {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.torrent-refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-primary);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.torrent-refresh-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.torrent-interval-select {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xs) var(--space-md);
+  color: var(--color-text-primary);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+}
+
+.torrent-state-card {
+  padding: var(--space-lg);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.torrent-grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.torrent-row-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: rgba(12, 16, 24, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.torrent-row-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124, 58, 237, 0.35);
+  box-shadow: var(--shadow-xl);
+}
+
+.torrent-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+
+.torrent-row-title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.torrent-row-progress-value {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-accent-cyan);
+}
+
+.torrent-row-meta {
+  display: flex;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.torrent-row-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.torrent-progress-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.torrent-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-green));
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+@media (max-width: 720px) {
+  .torrent-list-wrapper {
+    padding: var(--space-lg);
+  }
+
+  .torrent-row-card {
+    padding: var(--space-md);
+  }
+
+  .torrent-row-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .torrent-row-meta {
+    gap: var(--space-md);
+  }
+}

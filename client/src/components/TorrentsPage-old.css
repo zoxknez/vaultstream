@@ -1,0 +1,596 @@
+.torrents-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg) var(--space-lg) 0;
+}
+
+.torrents-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  flex: 1;
+}
+
+.torrents-hero {
+  position: relative;
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.torrents-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--color-accent-cyan);
+  font-weight: var(--weight-semibold);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.torrents-title {
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: var(--weight-black);
+  margin: 0;
+  max-width: 620px;
+  line-height: 1.15;
+  color: var(--color-text-primary);
+}
+
+.torrents-description {
+  margin: 0;
+  max-width: 540px;
+  color: var(--color-text-secondary);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+.torrents-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.torrents-flash {
+  margin-top: var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--color-success, #22c55e);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  backdrop-filter: blur(16px);
+}
+
+.torrents-flash.error {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.45);
+  color: var(--color-error, #ef4444);
+}
+
+.spin {
+  animation: torrents-spin 0.8s linear infinite;
+}
+
+@keyframes torrents-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.torrents-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.torrents-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-xl);
+  align-items: stretch;
+}
+
+.torrents-action-card {
+  position: relative;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.torrents-action-card.drag-active,
+.torrents-action-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
+}
+
+.torrents-card-header {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.torrents-card-header h3 {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+}
+
+.torrents-card-header p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.torrents-upload-dropzone {
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  background: rgba(15, 23, 42, 0.25);
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.torrents-upload-dropzone strong {
+  color: var(--color-text-primary);
+}
+
+.torrents-upload-dropzone .torrents-inline-button {
+  margin-left: var(--space-xs);
+}
+
+.torrents-upload-dropzone.is-active {
+  border-color: var(--color-accent-cyan);
+  background: rgba(34, 211, 238, 0.12);
+  transform: scale(1.01);
+}
+
+.torrents-upload-hint {
+  display: block;
+  margin-top: var(--space-sm);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--text-xs);
+}
+
+.torrents-inline-button {
+  border: none;
+  background: none;
+  color: var(--color-accent-cyan);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  padding: 0;
+}
+
+.torrents-inline-button:hover {
+  text-decoration: underline;
+}
+
+.torrents-file-input {
+  display: none;
+}
+
+.torrents-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.torrents-status-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  word-break: break-word;
+}
+
+.torrents-magnet-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.magnet-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.magnet-input-wrapper textarea {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  border: 1px solid transparent;
+  padding: var(--space-md);
+  padding-right: 80px;
+  background: rgba(15, 23, 42, 0.35);
+  color: var(--color-text-primary);
+  resize: vertical;
+  min-height: 140px;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.magnet-input-wrapper textarea:focus {
+  border-color: var(--color-accent-cyan);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+}
+
+.paste-btn {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, var(--color-accent-cyan) 0%, var(--color-accent-violet) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2);
+}
+
+.paste-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.paste-btn:active {
+  transform: translateY(0);
+}
+
+.paste-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.torrents-url-form {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.torrents-url-input {
+  flex: 1;
+  border-radius: var(--radius-xl);
+  border: 1px solid transparent;
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(15, 23, 42, 0.35);
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.torrents-url-input:focus {
+  border-color: var(--color-accent-cyan);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+}
+
+.torrents-url-input::placeholder {
+  color: rgba(148, 163, 184, 0.6);
+}
+
+/* Keep old styles for backward compatibility */
+.torrents-magnet-form textarea {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  border: 1px solid transparent;
+  padding: var(--space-md);
+  background: rgba(15, 23, 42, 0.35);
+  color: var(--color-text-primary);
+  resize: vertical;
+  min-height: 140px;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.torrents-magnet-form textarea:focus {
+  border-color: var(--color-accent-cyan);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+}
+
+.torrents-search-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.torrents-search-input {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: stretch;
+}
+
+.torrents-search-input input {
+  flex: 1;
+  border-radius: var(--radius-xl);
+  border: 1px solid transparent;
+  padding: 0 var(--space-md);
+  background: rgba(15, 23, 42, 0.35);
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.torrents-search-input input:focus {
+  border-color: rgba(94, 234, 212, 0.5);
+  box-shadow: 0 0 0 3px rgba(94, 234, 212, 0.15);
+  outline: none;
+}
+
+.torrents-search-state {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+}
+
+.torrents-search-state.error {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-error, #ef4444);
+}
+
+.torrents-search-state.warning {
+  background: rgba(250, 204, 21, 0.1);
+  color: #facc15;
+}
+
+.torrents-search-state.muted {
+  background: rgba(148, 163, 184, 0.12);
+  color: rgba(226, 232, 240, 0.75);
+}
+
+.torrents-search-results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.torrents-search-result {
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: var(--space-md);
+  background: rgba(15, 23, 42, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.torrents-result-header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.torrents-result-header h4 {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+}
+
+.torrents-result-meta {
+  display: flex;
+  gap: var(--space-sm);
+  color: rgba(226, 232, 240, 0.8);
+  font-size: var(--text-xs);
+  flex-wrap: wrap;
+}
+
+.torrents-result-links {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  font-size: var(--text-xs);
+}
+
+.torrents-history {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.torrents-history-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-md);
+}
+
+.torrents-history-stat {
+  background: rgba(15, 23, 42, 0.35);
+  border-radius: var(--radius-xl);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.torrents-history-stat strong {
+  font-size: var(--text-xl);
+  color: var(--color-text-primary);
+}
+
+.torrents-history-stat span {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+.torrents-history-stat small {
+  color: rgba(148, 163, 184, 0.8);
+  font-size: var(--text-xs);
+}
+
+.torrents-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.torrents-history-item a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  background: rgba(15, 23, 42, 0.25);
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.torrents-history-item a:hover {
+  background: rgba(34, 211, 238, 0.12);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .torrents-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .torrents-url-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .torrents-url-form button {
+    width: 100%;
+  }
+
+  .paste-btn {
+    position: static;
+    margin-top: var(--space-sm);
+    width: 100%;
+    justify-content: center;
+  }
+
+  .magnet-input-wrapper textarea {
+    padding-right: var(--space-md);
+  }
+
+  .torrents-history-stats {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
+
+.torrents-history-name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.torrents-history-meta {
+  display: flex;
+  gap: var(--space-sm);
+  font-size: var(--text-xs);
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.torrents-dashboard-header h2 {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+}
+
+.torrents-dashboard-header p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 900px) {
+  .torrents-page {
+    padding: var(--space-xl) var(--space-md) 0;
+  }
+
+  .torrents-hero {
+    padding: var(--space-xl);
+  }
+
+  .torrents-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .torrents-actions .btn-primary,
+  .torrents-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1100px) {
+  .torrents-actions-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .torrents-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .torrents-result-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .torrents-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .torrents-card-footer .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .torrents-search-input {
+    flex-direction: column;
+  }
+
+  .torrents-search-input button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .torrents-history-item a {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

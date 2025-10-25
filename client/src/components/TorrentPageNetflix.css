@@ -1,0 +1,928 @@
+/* ═══════════════════════════════════════════════════════════════════
+   🎬 TORRENT DETAIL PAGE – STREAMVAULT DESIGN 2026
+   ═══════════════════════════════════════════════════════════════════ */
+
+.netflix-page {
+  min-height: 100vh;
+  padding: var(--space-lg) var(--space-lg) var(--space-2xl);
+  background: var(--color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  position: relative;
+}
+
+.netflix-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0, 217, 255, 0.08) 0%, transparent 55%),
+    radial-gradient(circle at 75% 15%, rgba(255, 107, 107, 0.06) 0%, transparent 55%),
+    radial-gradient(circle at 50% 80%, rgba(0, 255, 163, 0.05) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Loading / Error States */
+.netflix-loading,
+.netflix-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  min-height: 60vh;
+  background: var(--gradient-glass);
+  backdrop-filter: var(--blur-xl) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-xl);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.netflix-loading {
+  gap: var(--space-lg);
+}
+
+.netflix-spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--color-accent-cyan);
+  border-radius: var(--radius-full);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.netflix-error h2 {
+  margin: 0;
+  font-size: var(--text-2xl);
+  color: var(--color-text-primary);
+}
+
+.netflix-error p {
+  margin: 0;
+  max-width: 420px;
+  font-size: var(--text-base);
+}
+
+.netflix-retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: none;
+  background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-green));
+  color: var(--color-bg-primary);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.netflix-retry-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(0, 217, 255, 0.45);
+}
+
+/* Hero Section */
+.netflix-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding: var(--space-xl);
+  border-radius: var(--radius-2xl);
+  background: var(--gradient-glass);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.netflix-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10, 15, 40, 0.85) 0%, rgba(10, 20, 55, 0.4) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.netflix-hero.has-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--hero-image, none);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.45;
+  filter: saturate(120%) contrast(105%);
+  z-index: 0;
+}
+
+.netflix-hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+.netflix-back-btn {
+  position: absolute;
+  top: var(--space-lg);
+  left: var(--space-lg);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.netflix-back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.netflix-title-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.netflix-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: var(--weight-black);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+}
+
+.netflix-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.netflix-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+}
+
+.star-icon {
+  color: #ffd166;
+}
+
+.netflix-votes {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+.netflix-info-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+}
+
+.netflix-info-row span:not(:last-child)::after {
+  content: '•';
+  margin-left: var(--space-sm);
+  opacity: 0.4;
+}
+
+.netflix-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.netflix-play-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-xl);
+  border-radius: var(--radius-lg);
+  border: none;
+  background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-green));
+  color: var(--color-bg-primary);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.netflix-play-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 217, 255, 0.45);
+}
+
+.netflix-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--color-text-primary);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.netflix-secondary-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.netflix-description {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  max-width: 720px;
+}
+
+.netflix-poster {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.netflix-poster img {
+  width: clamp(220px, 18vw, 300px);
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* Content Layout */
+.netflix-content {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1.4fr);
+  gap: var(--space-xl);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.netflix-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.netflix-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.netflix-section {
+  background: var(--gradient-glass);
+  backdrop-filter: var(--blur-lg) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.netflix-section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.netflix-section h2 {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+}
+
+.netflix-section-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.netflix-season-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.batch-actions-trigger {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.batch-actions-trigger:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 217, 255, 0.45);
+  color: var(--color-accent-cyan);
+}
+
+.netflix-season-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.netflix-season-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 217, 255, 0.4);
+  color: var(--color-text-primary);
+}
+
+.netflix-season-btn.active {
+  background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-green));
+  border-color: rgba(0, 217, 255, 0.4);
+  color: var(--color-bg-primary);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.netflix-season-count {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Episodes */
+.netflix-episodes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.netflix-episode {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.netflix-episode:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 217, 255, 0.35);
+  box-shadow: 0 14px 30px rgba(0, 217, 255, 0.12);
+}
+
+.netflix-episode.last-watched {
+  border-color: rgba(0, 217, 255, 0.5);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.netflix-episode.in-progress {
+  border-color: rgba(124, 58, 237, 0.35);
+  background: rgba(124, 58, 237, 0.08);
+}
+
+.netflix-episode-thumbnail {
+  position: relative;
+  width: 160px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.25), rgba(124, 58, 237, 0.25));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.netflix-episode-thumbnail::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+.netflix-episode-play {
+  position: relative;
+  z-index: 1;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.netflix-episode-play:hover {
+  transform: scale(1.08);
+}
+
+.netflix-episode-badge {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 1;
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--color-text-primary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.netflix-last-watched-indicator {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.netflix-last-watched-indicator svg {
+  width: 56px;
+  height: 56px;
+  padding: var(--space-sm);
+  border-radius: var(--radius-full);
+  background: rgba(0, 217, 255, 0.85);
+  color: var(--color-bg-primary);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.06); opacity: 0.85; }
+}
+
+.netflix-continue-badge {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  z-index: 1;
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-accent-coral), #ff9a56);
+  color: var(--color-bg-primary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.netflix-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.netflix-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-green));
+  transition: width var(--transition-base);
+}
+
+.netflix-episode-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.netflix-episode-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.netflix-episode-header h4 {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.netflix-episode-duration {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+.netflix-episode-title {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  display: -webkit-box;
+  display: box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.netflix-episode-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+.netflix-episode-quality {
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.netflix-episode-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.netflix-episode-download,
+.netflix-episode-restart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.netflix-episode-download:hover,
+.netflix-episode-restart:hover {
+  transform: translateY(-1px);
+  border-color: rgba(0, 217, 255, 0.45);
+  color: var(--color-accent-cyan);
+}
+
+/* Extras */
+.netflix-extras {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.netflix-extras h3 {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+}
+
+.netflix-extras-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.netflix-extra {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.netflix-extra:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 217, 255, 0.35);
+}
+
+.netflix-extra-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  background: rgba(0, 217, 255, 0.12);
+  color: var(--color-accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.netflix-extra-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.netflix-extra-title {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.netflix-extra-meta {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+.netflix-extra-download {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.netflix-extra-download:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 107, 107, 0.4);
+  color: var(--color-accent-coral);
+}
+
+/* Additional Files */
+.netflix-files {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.netflix-file {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-md);
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color var(--transition-fast);
+}
+
+.netflix-file:hover {
+  border-color: rgba(0, 217, 255, 0.3);
+}
+
+.netflix-file-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-lg);
+  background: rgba(0, 217, 255, 0.12);
+  color: var(--color-accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.netflix-file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.netflix-file-name {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+}
+
+.netflix-file-size {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* Sidebar */
+.netflix-info-card {
+  background: var(--gradient-glass);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.netflix-info-card h3 {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.netflix-info-card p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.netflix-ratings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.netflix-rating-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.netflix-torrent-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-md);
+}
+
+.netflix-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.netflix-stat span:last-child {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+/* Empty State */
+.netflix-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  border-radius: var(--radius-xl);
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .netflix-content {
+    grid-template-columns: 1fr;
+  }
+
+  .netflix-sidebar {
+    order: -1;
+  }
+}
+
+@media (max-width: 992px) {
+  .netflix-page {
+    padding: var(--space-lg) var(--space-md) var(--space-2xl);
+  }
+
+  .netflix-hero,
+  .netflix-section,
+  .netflix-info-card {
+    border-radius: var(--radius-xl);
+  }
+
+  .netflix-hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .netflix-poster {
+    align-self: center;
+  }
+
+  .netflix-back-btn {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .netflix-hero {
+    padding: var(--space-lg);
+  }
+
+  .netflix-action-buttons {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .netflix-action-buttons > * {
+    flex: 1 1 45%;
+    justify-content: center;
+  }
+
+  .netflix-episode {
+    grid-template-columns: 1fr;
+  }
+
+  .netflix-episode-thumbnail {
+    width: 100%;
+  }
+
+  .netflix-episode-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .netflix-page {
+    padding: var(--space-md) var(--space-sm) var(--space-2xl);
+  }
+
+  .netflix-hero {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .netflix-action-buttons > * {
+    flex: 1 1 100%;
+  }
+
+  .netflix-section,
+  .netflix-info-card {
+    padding: var(--space-lg);
+  }
+}

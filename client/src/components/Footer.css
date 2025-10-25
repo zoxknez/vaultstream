@@ -1,0 +1,135 @@
+/* ═══════════════════════════════════════════════════════════════════
+   👣 FOOTER - CINEMA PREMIUM DESIGN
+   ═══════════════════════════════════════════════════════════════════ */
+
+.app-footer {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(18, 18, 26, 0.95);
+  backdrop-filter: var(--blur-xl) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+  position: relative;
+  z-index: var(--z-base);
+  flex-shrink: 0;
+}
+
+.app-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(0, 217, 255, 0.3) 50%,
+    transparent 100%);
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+/* Footer Brand */
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.footer-logo {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-green));
+  border-radius: var(--radius-lg);
+  color: var(--color-bg-primary);
+  box-shadow: var(--shadow-glow-cyan);
+  flex-shrink: 0;
+}
+
+.footer-logo svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footer-brand-text {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Footer Info */
+.footer-info {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-info span {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* Footer Love */
+.footer-love {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.heart-icon {
+  color: var(--color-accent-coral);
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(1.1);
+  }
+  20%, 40% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-footer {
+    padding: var(--space-md);
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-md);
+  }
+
+  .footer-info {
+    order: -1;
+  }
+
+  .footer-brand {
+    order: 1;
+  }
+
+  .footer-love {
+    order: 2;
+    justify-content: center;
+  }
+}

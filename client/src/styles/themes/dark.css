@@ -1,0 +1,28 @@
+/* ═══════════════════════════════════════════════════════════════════
+   🌙 DARK THEME (Default)
+   StreamVault Dark Mode Colors
+   ═══════════════════════════════════════════════════════════════════ */
+
+[data-theme='dark'],
+.dark-theme {
+  /* These are the default values from design-system.css */
+  /* Explicitly defined here for clarity */
+
+  --color-bg-primary: #141414;
+  --color-bg-secondary: #0f0f0f;
+  --color-bg-elevated: #1f1f1f;
+  --color-bg-modal: rgba(0, 0, 0, 0.75);
+
+  --color-surface-1: rgba(255, 255, 255, 0.08);
+  --color-surface-2: rgba(255, 255, 255, 0.12);
+  --color-surface-3: rgba(255, 255, 255, 0.16);
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b3b3b3;
+  --color-text-tertiary: #808080;
+
+  --color-accent-primary: #e50914;
+  --color-accent-hover: #f40612;
+}
+
+/* Dark theme is default, no overrides needed */

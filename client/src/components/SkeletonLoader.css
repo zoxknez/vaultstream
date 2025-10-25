@@ -1,0 +1,207 @@
+/* Skeleton Loader Styles */
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(243, 244, 246, 1) 0%,
+    rgba(229, 231, 235, 1) 50%,
+    rgba(243, 244, 246, 1) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+/* Card Skeleton */
+.skeleton-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.skeleton-card-image {
+  border-radius: 16px 16px 0 0;
+}
+
+.skeleton-card-content {
+  padding: 16px;
+}
+
+/* List Skeleton */
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-list-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+}
+
+.skeleton-list-icon {
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.skeleton-list-content {
+  flex: 1;
+}
+
+/* Episode Grid Skeleton */
+.skeleton-episode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.skeleton-episode-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.skeleton-episode-thumbnail {
+  border-radius: 12px 12px 0 0;
+}
+
+.skeleton-episode-info {
+  padding: 12px;
+}
+
+/* Search Result Skeleton */
+.skeleton-search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeleton-search-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  gap: 16px;
+}
+
+.skeleton-result-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.skeleton-result-icon {
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.skeleton-result-content {
+  flex: 1;
+}
+
+.skeleton-result-button {
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Hero Skeleton */
+.skeleton-hero {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 243, 255, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 48px;
+  margin-bottom: 32px;
+}
+
+.skeleton-hero-content {
+  max-width: 600px;
+}
+
+/* Stats Skeleton */
+.skeleton-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.skeleton-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+}
+
+.skeleton-stat-icon {
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.skeleton-stat-content {
+  flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skeleton-hero {
+    padding: 32px 24px;
+  }
+
+  .skeleton-episode-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .skeleton-search-result {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .skeleton-result-button {
+    width: 100%;
+  }
+
+  .skeleton-stats {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+
+  .skeleton-stat-card {
+    padding: 16px;
+  }
+}
+
+/* Glassmorphism variant for purple theme */
+.skeleton.glass {
+  background: linear-gradient(
+    90deg,
+    rgba(237, 233, 254, 0.8) 0%,
+    rgba(221, 214, 254, 0.8) 50%,
+    rgba(237, 233, 254, 0.8) 100%
+  );
+}

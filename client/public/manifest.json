@@ -1,0 +1,78 @@
+{
+  "name": "StreamVault - Premium Streaming",
+  "short_name": "StreamVault",
+  "description": "Premium Torrent Streaming Platform with Netflix-like Experience",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#e50914",
+  "orientation": "portrait-primary",
+  "categories": ["entertainment", "multimedia"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "128x128",
+      "type": "image/x-icon",
+      "purpose": "any"
+    },
+    {
+      "src": "/leaf.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/leaf.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "StreamVault Home Screen"
+    },
+    {
+      "src": "/screenshots/player-sceen-2.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "StreamVault Video Player"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Add Torrent",
+      "short_name": "Add",
+      "description": "Quick add torrent",
+      "url": "/?action=add",
+      "icons": [
+        {
+          "src": "/leaf.svg",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Recent Torrents",
+      "short_name": "Recent",
+      "description": "View recent torrents",
+      "url": "/recent",
+      "icons": [
+        {
+          "src": "/leaf.svg",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

@@ -1,0 +1,599 @@
+/* ===================================
+   TMDB CARD - NETFLIX-STYLE METADATA
+   =================================== */
+
+.tmdb-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===================================
+   COMPACT VIEW (for lists)
+   =================================== */
+
+.tmdb-card.compact {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: linear-gradient(135deg, rgba(30, 30, 40, 0.6), rgba(20, 20, 30, 0.6));
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  animation: cardFadeIn 0.4s ease-out;
+}
+
+.tmdb-card.compact:hover {
+  background: linear-gradient(135deg, rgba(30, 30, 40, 0.8), rgba(20, 20, 30, 0.8));
+  border-color: rgba(124, 58, 237, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
+}
+
+.tmdb-poster-small {
+  width: 60px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+.tmdb-compact-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.tmdb-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.tmdb-title-row svg {
+  flex-shrink: 0;
+}
+
+.tmdb-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tmdb-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tmdb-meta-row > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tmdb-rating {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+/* ===================================
+   FULL VIEW (for detail page)
+   =================================== */
+
+.tmdb-card.full {
+  background: rgba(10, 10, 15, 0.95);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+  animation: cardSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tmdb-backdrop-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.tmdb-backdrop {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tmdb-backdrop-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, 
+    transparent 0%,
+    rgba(10, 10, 15, 0.5) 50%,
+    rgba(10, 10, 15, 0.95) 100%);
+}
+
+.tmdb-content {
+  position: relative;
+  display: flex;
+  gap: 32px;
+  padding: 32px;
+  margin-top: -150px;
+  z-index: 1;
+}
+
+.tmdb-poster-section {
+  flex-shrink: 0;
+}
+
+.tmdb-poster {
+  width: 250px;
+  height: 375px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8),
+              0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.tmdb-poster:hover {
+  transform: scale(1.05);
+}
+
+.tmdb-info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+/* Header */
+.tmdb-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.tmdb-title-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.tmdb-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(168, 85, 247, 0.3));
+  border: 1px solid rgba(124, 58, 237, 0.5);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #c4b5fd;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.tmdb-title-full {
+  margin: 0 0 8px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(167, 139, 250, 0.1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tmdb-original-title {
+  margin: 0;
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.tmdb-play-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
+  flex-shrink: 0;
+}
+
+.tmdb-play-btn:hover {
+  background: linear-gradient(135deg, #8b5cf6, #c084fc);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.6);
+}
+
+/* Stats row */
+.tmdb-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.tmdb-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.tmdb-stat svg {
+  flex-shrink: 0;
+}
+
+.stat-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Genres */
+.tmdb-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tmdb-genre-tag {
+  padding: 6px 14px;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 20px;
+  font-size: 0.875rem;
+  color: #c4b5fd;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tmdb-genre-tag:hover {
+  background: rgba(124, 58, 237, 0.25);
+  border-color: rgba(124, 58, 237, 0.5);
+}
+
+/* Overview */
+.tmdb-overview,
+.tmdb-episode-info {
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tmdb-overview h3,
+.tmdb-episode-info h3,
+.tmdb-cast h3 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tmdb-overview p,
+.tmdb-episode-info p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Cast */
+.tmdb-cast {
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tmdb-cast-list {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.tmdb-cast-list::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tmdb-cast-list::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.5);
+  border-radius: 3px;
+}
+
+.tmdb-cast-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.tmdb-cast-member img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(124, 58, 237, 0.3);
+  transition: all 0.3s ease;
+}
+
+.tmdb-cast-member img:hover {
+  border-color: rgba(124, 58, 237, 0.8);
+  transform: scale(1.1);
+}
+
+.tmdb-cast-placeholder {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(124, 58, 237, 0.2);
+  border-radius: 50%;
+  border: 2px solid rgba(124, 58, 237, 0.3);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.tmdb-cast-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cast-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+}
+
+.cast-character {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Crew */
+.tmdb-crew {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.crew-item {
+  display: flex;
+  gap: 8px;
+  font-size: 0.9375rem;
+}
+
+.crew-label {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.crew-value {
+  color: white;
+}
+
+/* ===================================
+   SKELETON LOADING
+   =================================== */
+
+.tmdb-card.skeleton {
+  background: linear-gradient(135deg, rgba(30, 30, 40, 0.4), rgba(20, 20, 30, 0.4));
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.tmdb-card.compact.skeleton {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+}
+
+.skeleton-poster {
+  width: 60px;
+  height: 90px;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.05) 25%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    rgba(255, 255, 255, 0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+.skeleton-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-title,
+.skeleton-text {
+  height: 16px;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.05) 25%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    rgba(255, 255, 255, 0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 20px;
+}
+
+.skeleton-text.short {
+  width: 40%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 1024px) {
+  .tmdb-content {
+    flex-direction: column;
+    align-items: center;
+    margin-top: -100px;
+  }
+
+  .tmdb-poster {
+    width: 200px;
+    height: 300px;
+  }
+
+  .tmdb-info-section {
+    width: 100%;
+  }
+
+  .tmdb-backdrop-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tmdb-card.full {
+    border-radius: 0;
+  }
+
+  .tmdb-content {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .tmdb-poster {
+    width: 150px;
+    height: 225px;
+  }
+
+  .tmdb-title-full {
+    font-size: 1.75rem;
+  }
+
+  .tmdb-backdrop-container {
+    height: 250px;
+  }
+
+  .tmdb-header {
+    flex-direction: column;
+  }
+
+  .tmdb-play-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tmdb-stats {
+    gap: 16px;
+  }
+
+  .tmdb-cast-list {
+    gap: 12px;
+  }
+
+  .tmdb-cast-member,
+  .tmdb-cast-member img,
+  .tmdb-cast-placeholder {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tmdb-card.compact {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .tmdb-poster-small {
+    width: 50px;
+    height: 75px;
+  }
+
+  .tmdb-title {
+    font-size: 0.875rem;
+  }
+
+  .tmdb-meta-row {
+    font-size: 0.75rem;
+    gap: 8px;
+  }
+
+  .tmdb-poster {
+    width: 120px;
+    height: 180px;
+  }
+
+  .tmdb-title-full {
+    font-size: 1.5rem;
+  }
+
+  .tmdb-backdrop-container {
+    height: 200px;
+  }
+}

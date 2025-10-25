@@ -1,0 +1,170 @@
+.update-checker {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1100; /* Above sidebar (999) and mobile header (1000) but not excessive */
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.update-banner {
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.95), rgba(200, 0, 0, 0.95));
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 8px 32px rgba(255, 0, 0, 0.4),
+              0 0 0 1px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  min-width: 350px;
+  max-width: 450px;
+}
+
+.update-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.update-icon .spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.update-content {
+  flex: 1;
+  color: #ffffff;
+}
+
+.update-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0 0 4px 0;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.update-title strong {
+  font-weight: 900;
+  color: #ffff00;
+  text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+.update-subtitle {
+  font-size: 12px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.update-error {
+  font-size: 13px;
+  color: #ffcccc;
+  margin: 0;
+}
+
+.update-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.update-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #ffffff;
+}
+
+.download-btn {
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.download-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
+.dismiss-btn {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dismiss-btn:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .update-checker {
+    top: 70px; /* Below mobile header */
+    right: 10px;
+    left: 10px;
+    z-index: 950; /* Below mobile header but above content */
+  }
+
+  .update-banner {
+    min-width: unset;
+    max-width: unset;
+    padding: 14px 16px;
+  }
+
+  .update-title {
+    font-size: 14px;
+  }
+
+  .update-subtitle {
+    font-size: 11px;
+  }
+
+  .update-btn {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .update-banner {
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.9), rgba(180, 0, 0, 0.9));
+  }
+}

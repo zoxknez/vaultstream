@@ -1,0 +1,636 @@
+/* ═══════════════════════════════════════════════════════════════════
+   � NETFLIX-INSPIRED DESIGN SYSTEM
+   StreamVault - Premium Streaming Experience
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ━━━ Netflix Color Palette ━━━ */
+  --netflix-black: #141414;
+  --netflix-red: #e50914;
+  --netflix-red-dark: #b20710;
+  --netflix-red-hover: #c11119;
+
+  --color-bg-primary: #141414;
+  --color-bg-secondary: #0f0f0f;
+  --color-bg-elevated: #1f1f1f;
+  --color-bg-modal: rgba(0, 0, 0, 0.75);
+
+  --color-surface-1: rgba(255, 255, 255, 0.08);
+  --color-surface-2: rgba(255, 255, 255, 0.12);
+  --color-surface-3: rgba(255, 255, 255, 0.16);
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b3b3b3;
+  --color-text-tertiary: #808080;
+
+  /* Netflix Accent Colors */
+  --color-accent-primary: #e50914;
+  --color-accent-hover: #f40612;
+  --color-accent-white: #ffffff;
+  --color-accent-info: #46d369;
+  --color-accent-warning: #f5a623;
+
+  /* Netflix Gradients */
+  --gradient-hero: linear-gradient(
+    0deg,
+    rgba(20, 20, 20, 1) 0%,
+    rgba(20, 20, 20, 0.95) 20%,
+    rgba(20, 20, 20, 0.8) 50%,
+    rgba(20, 20, 20, 0.4) 80%,
+    transparent 100%
+  );
+
+  --gradient-hero-bottom: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(20, 20, 20, 0.7) 40%,
+    rgba(20, 20, 20, 0.95) 70%,
+    rgba(20, 20, 20, 1) 90%,
+    rgba(20, 20, 20, 1) 100%
+  );
+
+  --gradient-card-hover: linear-gradient(
+    0deg,
+    rgba(20, 20, 20, 0.9) 0%,
+    rgba(20, 20, 20, 0.6) 50%,
+    rgba(20, 20, 20, 0.3) 100%
+  );
+
+  --gradient-shimmer: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+
+  /* Netflix Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.8);
+  --shadow-card: 0 6px 20px rgba(0, 0, 0, 0.65);
+  --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.8);
+
+  --shadow-red-glow: 0 0 20px rgba(229, 9, 20, 0.5);
+  --shadow-button: 0 3px 10px rgba(0, 0, 0, 0.5);
+
+  /* Netflix Backdrop Blur */
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(16px);
+  --blur-xl: blur(32px);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Netflix Typography */
+  --font-primary: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 22px;
+  --text-2xl: 28px;
+  --text-3xl: 36px;
+  --text-4xl: 48px;
+  --text-5xl: 64px;
+
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-black: 900;
+
+  /* Netflix Transitions & Animations */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-scale: 450ms cubic-bezier(0.05, 0.5, 0, 1);
+
+  /* Netflix Z-index layers */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Z-Index Scale */
+  --z-base: 1;
+  --z-elevated: 10;
+  --z-dropdown: 100;
+  --z-sticky: 500;
+  --z-overlay: 1000;
+  --z-modal: 2000;
+  --z-tooltip: 3000;
+}
+
+/* ━━━ Netflix Global Resets & Base Styles ━━━ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--weight-normal);
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ━━━ Utility Classes ━━━ */
+
+/* Glass Card Base */
+.glass-card {
+  background: var(--gradient-glass);
+  backdrop-filter: var(--blur-lg) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-mesh-1);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Floating Card Effect */
+.floating-card {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.floating-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Glow Effects */
+.glow-cyan {
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.glow-coral {
+  box-shadow: var(--shadow-glow-coral);
+}
+
+.glow-green {
+  box-shadow: var(--shadow-glow-green);
+}
+
+/* Text Gradients */
+.text-gradient-cyan {
+  background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-coral {
+  background: linear-gradient(135deg, var(--color-accent-coral), #ff9a56);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-shimmer);
+  animation: shimmer 2s infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-base) ease-out;
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideIn var(--transition-slow) ease-out;
+}
+
+/* ━━━ Responsive Typography ━━━ */
+@media (max-width: 768px) {
+  :root {
+    --text-xs: 10px;
+    --text-sm: 12px;
+    --text-base: 14px;
+    --text-lg: 16px;
+    --text-xl: 18px;
+    --text-2xl: 22px;
+    --text-3xl: 28px;
+    --text-4xl: 34px;
+  }
+}
+
+/* ━━━ Scrollbar Styling ━━━ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-2);
+  border-radius: var(--radius-full);
+  transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-3);
+}
+
+/* ━━━ Selection Styling ━━━ */
+::selection {
+  background: var(--color-accent-cyan);
+  color: var(--color-bg-primary);
+}
+
+::-moz-selection {
+  background: var(--color-accent-cyan);
+  color: var(--color-bg-primary);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🖥️ DESKTOP-FIRST RESPONSIVE BREAKPOINTS
+   Optimized for Desktop & Laptop screens
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+:root {
+  /* Desktop/Laptop Breakpoints */
+  --bp-4k: 3840px; /* 4K UHD */
+  --bp-ultrawide: 2560px; /* Ultra-wide monitors */
+  --bp-desktop: 1920px; /* Standard desktop */
+  --bp-laptop: 1440px; /* Large laptop */
+  --bp-tablet: 1024px; /* Small laptop / tablet */
+  --bp-mobile: 768px; /* Mobile */
+  --bp-small: 480px; /* Small mobile */
+}
+
+/* ━━━ 4K Ultra HD (3840px+) ━━━ */
+@media (min-width: 3840px) {
+  :root {
+    /* Scale up everything for 4K */
+    --text-xs: 14px;
+    --text-sm: 16px;
+    --text-base: 18px;
+    --text-lg: 20px;
+    --text-xl: 24px;
+    --text-2xl: 32px;
+    --text-3xl: 40px;
+    --text-4xl: 52px;
+    --text-5xl: 64px;
+    --text-6xl: 80px;
+
+    /* Larger spacing */
+    --space-xs: 6px;
+    --space-sm: 12px;
+    --space-md: 24px;
+    --space-lg: 36px;
+    --space-xl: 48px;
+    --space-2xl: 72px;
+    --space-3xl: 96px;
+  }
+
+  .netflix-nav {
+    padding: 0 6vw;
+    height: 90px;
+  }
+
+  .netflix-hero {
+    min-height: 900px;
+  }
+}
+
+/* ━━━ Ultra-wide Monitors (2560px - 3839px) ━━━ */
+@media (min-width: 2560px) and (max-width: 3839px) {
+  :root {
+    --text-xs: 13px;
+    --text-sm: 15px;
+    --text-base: 17px;
+    --text-lg: 19px;
+    --text-xl: 22px;
+    --text-2xl: 28px;
+    --text-3xl: 36px;
+    --text-4xl: 46px;
+    --text-5xl: 56px;
+    --text-6xl: 70px;
+  }
+
+  .netflix-nav {
+    padding: 0 5vw;
+    height: 80px;
+  }
+
+  .netflix-hero {
+    min-height: 800px;
+  }
+
+  /* Wider content wrapper for ultrawide */
+  .netflix-content-wrapper {
+    max-width: 95%;
+    margin: 0 auto;
+  }
+}
+
+/* ━━━ Standard Desktop (1920px - 2559px) ━━━ */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  /* Default sizes work perfectly for standard desktop */
+
+  .netflix-hero {
+    min-height: 700px;
+  }
+}
+
+/* ━━━ Large Laptop (1440px - 1919px) ━━━ */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .netflix-hero {
+    min-height: 650px;
+  }
+
+  .netflix-row-items {
+    gap: 12px;
+  }
+}
+
+/* ━━━ Laptop / Small Desktop (1024px - 1439px) ━━━ */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .netflix-nav {
+    padding: 0 3vw;
+  }
+
+  .netflix-hero {
+    min-height: 550px;
+  }
+
+  .netflix-hero-content {
+    max-width: 600px;
+  }
+
+  .netflix-row-items {
+    gap: 10px;
+  }
+}
+
+/* ━━━ Tablet (768px - 1023px) ━━━ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --text-xs: 10px;
+    --text-sm: 12px;
+    --text-base: 14px;
+    --text-lg: 16px;
+    --text-xl: 18px;
+    --text-2xl: 22px;
+    --text-3xl: 28px;
+    --text-4xl: 34px;
+  }
+
+  .netflix-nav {
+    padding: 0 2vw;
+    height: 60px;
+  }
+
+  .netflix-hero {
+    min-height: 450px;
+  }
+
+  .netflix-hero-content {
+    max-width: 500px;
+  }
+}
+
+/* ━━━ Mobile (480px - 767px) ━━━ */
+@media (min-width: 480px) and (max-width: 767px) {
+  :root {
+    --text-xs: 10px;
+    --text-sm: 11px;
+    --text-base: 13px;
+    --text-lg: 15px;
+    --text-xl: 17px;
+    --text-2xl: 20px;
+    --text-3xl: 24px;
+    --text-4xl: 30px;
+  }
+
+  .netflix-nav {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .netflix-hero {
+    min-height: 400px;
+  }
+
+  .netflix-hero-content {
+    max-width: 90%;
+  }
+}
+
+/* ━━━ Small Mobile (< 480px) ━━━ */
+@media (max-width: 479px) {
+  :root {
+    --text-xs: 9px;
+    --text-sm: 10px;
+    --text-base: 12px;
+    --text-lg: 14px;
+    --text-xl: 16px;
+    --text-2xl: 18px;
+    --text-3xl: 22px;
+    --text-4xl: 26px;
+  }
+
+  .netflix-nav {
+    padding: 0 12px;
+    height: 52px;
+  }
+
+  .netflix-hero {
+    min-height: 350px;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🎨 HIGH DPI / RETINA DISPLAYS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Retina Displays (2x) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Sharper text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* High-quality image rendering */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Ultra Retina (3x) - iPhone, iPad Pro */
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+  img {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🖥️ ULTRA-WIDE ASPECT RATIOS (21:9, 32:9)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* 21:9 Ultra-wide */
+@media (min-aspect-ratio: 21/9) {
+  .netflix-content-wrapper {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .netflix-hero-content {
+    max-width: 50%;
+  }
+
+  .netflix-row {
+    padding: 0 6vw;
+  }
+}
+
+/* 32:9 Super Ultra-wide */
+@media (min-aspect-ratio: 32/9) {
+  .netflix-content-wrapper {
+    max-width: 80%;
+  }
+
+  .netflix-hero-content {
+    max-width: 40%;
+  }
+
+  .netflix-row {
+    padding: 0 10vw;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🎯 ADAPTIVE FONT SCALING
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Viewport-based fluid typography */
+@media (min-width: 1024px) {
+  .netflix-hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .netflix-hero-description {
+    font-size: clamp(1rem, 1.5vw, 1.375rem);
+    line-height: clamp(1.5rem, 2vw, 2rem);
+  }
+}
+
+/* Multi-monitor optimization */
+@media (min-width: 1920px) {
+  body {
+    /* Prevent content from being too wide on massive screens */
+    max-width: 2560px;
+    margin: 0 auto;
+  }
+}

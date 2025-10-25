@@ -1,0 +1,330 @@
+/**
+ * Metrics Page Styles
+ * Cinema Premium Design System - Dark Theme
+ */
+
+.metrics-page {
+  color: var(--color-text-primary);
+}
+
+.metrics-hero-header {
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+
+.metrics-hero-icon {
+  color: var(--color-accent-cyan);
+}
+
+.metrics-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.metrics-subtitle {
+  margin-top: var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  max-width: 520px;
+}
+
+.metrics-timestamp {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  background: rgba(0, 217, 255, 0.1);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+.metrics-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-green));
+  color: #0a0a0f;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.metrics-refresh:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.metrics-refresh:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 217, 255, 0.4);
+}
+
+.metrics-alert {
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+}
+
+.metrics-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-2xl) 0;
+  color: var(--color-text-secondary);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 217, 255, 0.2);
+  border-top-color: var(--color-accent-cyan);
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.metrics-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.metrics-auth-alert {
+  display: flex;
+  justify-content: center;
+}
+
+.metrics-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+  position: relative;
+  z-index: 1;
+}
+
+.metrics-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.metrics-raw-toggle,
+.metrics-raw {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.metrics-raw pre {
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  color: var(--color-text-secondary);
+  max-height: 420px;
+  overflow: auto;
+  font-size: 0.85rem;
+}
+
+.metrics-health {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.health-card {
+  background: var(--color-surface-1);
+  backdrop-filter: var(--blur-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  transition: all var(--transition-fast);
+}
+
+.health-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent-cyan);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.health-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+
+.health-header h2 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.health-header p {
+  margin: var(--space-xs) 0 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.health-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(0, 255, 163, 0.15));
+  color: var(--color-accent-cyan);
+}
+
+.health-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.stat-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: var(--weight-semibold);
+}
+
+.stat-value {
+  font-size: var(--text-2xl);
+  color: var(--color-text-primary);
+  font-weight: var(--weight-bold);
+}
+
+.stat-value.online {
+  color: var(--color-accent-green);
+}
+
+.stat-value.warning {
+  color: var(--color-accent-coral);
+}
+
+.stat-value.info {
+  color: var(--color-accent-cyan);
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.metric-card {
+  background: var(--color-surface-1);
+  backdrop-filter: var(--blur-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  transition: all var(--transition-fast);
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  background: var(--color-surface-2);
+  border-color: var(--color-accent-purple);
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metric-title {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  font-weight: var(--weight-medium);
+}
+
+.metric-icon {
+  color: var(--color-accent-cyan);
+}
+
+.metric-value {
+  font-size: var(--text-3xl);
+  color: var(--color-text-primary);
+  font-weight: var(--weight-black);
+  line-height: 1;
+}
+
+.metric-change {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.metric-change.positive {
+  color: var(--color-accent-green);
+}
+
+.metric-change.negative {
+  color: var(--color-accent-coral);
+}
+
+@media (max-width: 768px) {
+  .metrics-page {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .metrics-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .metrics-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .metrics-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .health-stats {
+    grid-template-columns: 1fr;
+  }
+}

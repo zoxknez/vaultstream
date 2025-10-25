@@ -1,0 +1,173 @@
+/* ================================
+   PERFORMANCE MONITOR - DEV TOOL
+   ================================ */
+
+.performance-monitor {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 200px;
+  background: rgba(17, 24, 39, 0.95);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12px;
+  padding: 12px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  font-family: 'Courier New', monospace;
+  animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ================================
+   HEADER
+   ================================ */
+
+.performance-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.btn-close-monitor {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.btn-close-monitor:hover {
+  color: #ef4444;
+}
+
+/* ================================
+   METRICS
+   ================================ */
+
+.performance-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background: rgba(31, 41, 55, 0.5);
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.metric:hover {
+  background: rgba(31, 41, 55, 0.8);
+}
+
+.metric-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 6px;
+  color: #a78bfa;
+}
+
+.metric-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.metric-label {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f3f4f6;
+}
+
+/* ================================
+   HINT
+   ================================ */
+
+.performance-hint {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  font-size: 0.7rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* ================================
+   ANIMATIONS
+   ================================ */
+
+.metric-value {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: 768px) {
+  .performance-monitor {
+    top: auto;
+    bottom: 80px;
+    right: 10px;
+    width: 180px;
+    padding: 10px;
+  }
+
+  .metric {
+    padding: 6px;
+  }
+
+  .metric-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .metric-value {
+    font-size: 0.9rem;
+  }
+}

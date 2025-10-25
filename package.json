@@ -1,0 +1,197 @@
+{
+  "name": "streamvault",
+  "version": "1.0.0",
+  "description": "StreamVault - Premium Torrent Streaming Platform",
+  "main": "electron-main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && node index.js",
+    "client": "cd client && npm run dev",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "electron:dev": "cross-env NODE_ENV=development electron .",
+    "electron:build": "cd client && npm run build && cd .. && electron-builder",
+    "build:win": "npm run electron:build -- --win --x64",
+    "build:linux": "npm run electron:build -- --linux --x64",
+    "build:mac": "npm run electron:build -- --mac --universal",
+    "build:all": "npm run electron:build -- --win --linux --mac",
+    "dist": "npm run build:all",
+    "package": "electron-builder --dir",
+    "release": "electron-builder"
+  },
+  "keywords": [
+    "torrent",
+    "streaming",
+    "webtorrent",
+    "netflix",
+    "media"
+  ],
+  "author": "StreamVault Team",
+  "license": "MIT",
+  "build": {
+    "appId": "com.streamvault.app",
+    "productName": "StreamVault",
+    "copyright": "Copyright © 2025 StreamVault",
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/webtorrent/**/*"
+    ],
+    "compression": "maximum",
+    "protocols": [
+      {
+        "name": "StreamVault Protocol",
+        "schemes": [
+          "streamvault"
+        ],
+        "role": "Viewer"
+      },
+      {
+        "name": "Magnet Link",
+        "schemes": [
+          "magnet"
+        ],
+        "role": "Viewer"
+      }
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "streamvault",
+        "repo": "streamvault",
+        "releaseType": "release"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "public/leaf.svg"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "public/leaf.svg",
+      "uninstallerIcon": "public/leaf.svg",
+      "installerHeaderIcon": "public/leaf.svg",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "StreamVault",
+      "perMachineinstall": true,
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "portable": {
+      "artifactName": "StreamVault-Portable-${version}.exe"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "icon": "public/leaf.svg",
+      "category": "Network",
+      "maintainer": "StreamVault Team",
+      "synopsis": "Premium Torrent Streaming Platform",
+      "desktop": {
+        "MimeType": "x-scheme-handler/streamvault;x-scheme-handler/magnet;application/x-bittorrent"
+      }
+    },
+    "deb": {
+      "depends": [
+        "gconf2",
+        "gconf-service",
+        "libnotify4",
+        "libappindicator1",
+        "libxtst6",
+        "libnss3"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "public/leaf.svg",
+      "category": "public.app-category.entertainment",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "extendInfo": {
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": [
+              "streamvault",
+              "magnet"
+            ],
+            "CFBundleURLName": "StreamVault Deep Link"
+          }
+        ]
+      }
+    },
+    "dmg": {
+      "background": "public/leaf.svg",
+      "iconSize": 100,
+      "window": {
+        "width": 600,
+        "height": 400
+      }
+    },
+    "directories": {
+      "output": "release",
+      "buildResources": "public"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/**/*",
+      "!client/node_modules/**/*",
+      "!server/node_modules/**/*",
+      "!**/*.map",
+      "!**/*.md",
+      "!platforms/**/*",
+      "!docs/**/*",
+      "!.git/**/*",
+      "!.github/**/*",
+      "!scripts/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "public/leaf.svg",
+        "to": "assets"
+      },
+      {
+        "from": "server",
+        "to": "server",
+        "filter": [
+          "**/*",
+          "!node_modules",
+          "!tests",
+          "!*.test.js"
+        ]
+      }
+    ],
+    "electronVersion": "38.4.0",
+    "nodeGypRebuild": false,
+    "buildDependenciesFromSource": false
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "electron": "^38.4.0",
+    "electron-builder": "^25.0.0"
+  },
+  "dependencies": {
+    "electron-updater": "^6.6.2"
+  }
+}

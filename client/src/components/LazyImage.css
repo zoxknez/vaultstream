@@ -1,0 +1,141 @@
+/* ================================
+   LAZY IMAGE - PERFORMANCE OPTIMIZED
+   ================================ */
+
+.lazy-image-container {
+  position: relative;
+  overflow: hidden;
+  background: rgba(31, 41, 55, 0.8);
+  border-radius: 8px;
+}
+
+/* ================================
+   SKELETON LOADING
+   ================================ */
+
+.lazy-image-skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(31, 41, 55, 0.8) 0%,
+    rgba(55, 65, 81, 0.8) 50%,
+    rgba(31, 41, 55, 0.8) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ================================
+   IMAGE STATES
+   ================================ */
+
+.lazy-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease, transform 0.3s ease;
+}
+
+.lazy-image.loading {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.lazy-image.loaded {
+  opacity: 1;
+  transform: scale(1);
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* ================================
+   ERROR STATE
+   ================================ */
+
+.lazy-image-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.8) 0%,
+    rgba(55, 65, 81, 0.8) 100%
+  );
+  border-radius: 8px;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+.lazy-image-error svg {
+  color: #6b7280;
+}
+
+/* ================================
+   HOVER EFFECTS
+   ================================ */
+
+.lazy-image-container:hover .lazy-image.loaded {
+  transform: scale(1.05);
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: 768px) {
+  .lazy-image-error {
+    font-size: 0.75rem;
+  }
+
+  .lazy-image-error svg {
+    width: 36px;
+    height: 36px;
+  }
+}

@@ -1,0 +1,96 @@
+/* ═══════════════════════════════════════════════════════════════════
+   🚫 NO SCROLLBAR - NUCLEAR OPTION
+   Complete elimination of all scrollbars including yellow ones
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Target EVERYTHING */
+*,
+*::before,
+*::after,
+html,
+body,
+div,
+section,
+article,
+main,
+aside,
+nav,
+header,
+footer {
+  scrollbar-width: none !important;
+  scrollbar-color: transparent transparent !important;
+  -ms-overflow-style: none !important;
+}
+
+/* WebKit browsers (Chrome, Safari, Edge, Opera) */
+*::-webkit-scrollbar,
+*::before::-webkit-scrollbar,
+*::after::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+div::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-corner,
+*::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Firefox specific */
+@-moz-document url-prefix() {
+  * {
+    scrollbar-width: none !important;
+  }
+}
+
+/* Netflix specific containers */
+.netflix-row-items,
+.netflix-row-container,
+.netflix-home,
+.netflix-content-wrapper {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.netflix-row-items::-webkit-scrollbar,
+.netflix-row-container::-webkit-scrollbar,
+.netflix-home::-webkit-scrollbar,
+.netflix-content-wrapper::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Edge cases - force hide */
+::-webkit-scrollbar {
+  display: none !important;
+}
+
+::-webkit-scrollbar-track {
+  display: none !important;
+}
+
+::-webkit-scrollbar-thumb {
+  display: none !important;
+}
+
+/* Make sure scroll functionality still works */
+.netflix-row-items {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
